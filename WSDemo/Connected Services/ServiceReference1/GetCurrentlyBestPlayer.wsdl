@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:tns="http://tempuri.org/" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" targetNamespace="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://tempuri.org/">
+      <s:element name="Hockey">
+        <s:complexType />
+      </s:element>
+      <s:element name="HockeyResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="HockeyResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Soccer">
+        <s:complexType />
+      </s:element>
+      <s:element name="SoccerResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="SoccerResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="HockeySoapIn">
+    <wsdl:part name="parameters" element="tns:Hockey" />
+  </wsdl:message>
+  <wsdl:message name="HockeySoapOut">
+    <wsdl:part name="parameters" element="tns:HockeyResponse" />
+  </wsdl:message>
+  <wsdl:message name="SoccerSoapIn">
+    <wsdl:part name="parameters" element="tns:Soccer" />
+  </wsdl:message>
+  <wsdl:message name="SoccerSoapOut">
+    <wsdl:part name="parameters" element="tns:SoccerResponse" />
+  </wsdl:message>
+  <wsdl:portType name="GetCurrentlyBestPlayerSoap">
+    <wsdl:operation name="Hockey">
+      <wsdl:input message="tns:HockeySoapIn" />
+      <wsdl:output message="tns:HockeySoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Soccer">
+      <wsdl:input message="tns:SoccerSoapIn" />
+      <wsdl:output message="tns:SoccerSoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="GetCurrentlyBestPlayerSoap" type="tns:GetCurrentlyBestPlayerSoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="Hockey">
+      <soap:operation soapAction="http://tempuri.org/Hockey" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Soccer">
+      <soap:operation soapAction="http://tempuri.org/Soccer" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="GetCurrentlyBestPlayerSoap12" type="tns:GetCurrentlyBestPlayerSoap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="Hockey">
+      <soap12:operation soapAction="http://tempuri.org/Hockey" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Soccer">
+      <soap12:operation soapAction="http://tempuri.org/Soccer" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="GetCurrentlyBestPlayer">
+    <wsdl:port name="GetCurrentlyBestPlayerSoap" binding="tns:GetCurrentlyBestPlayerSoap">
+      <soap:address location="http://wsdemo.systementor.se/GetCurrentlyBestPlayer.asmx" />
+    </wsdl:port>
+    <wsdl:port name="GetCurrentlyBestPlayerSoap12" binding="tns:GetCurrentlyBestPlayerSoap12">
+      <soap12:address location="http://wsdemo.systementor.se/GetCurrentlyBestPlayer.asmx" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>
